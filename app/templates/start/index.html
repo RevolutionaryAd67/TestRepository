@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Start · IEC 60870-5-104 Testbench{% endblock %}
+
+{% block content %}
+<section id="overview" class="space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="p-4 bg-slate-800 rounded border border-slate-700">
+      <h3 class="text-lg font-semibold">Client Status</h3>
+      <dl class="mt-2 text-sm space-y-1">
+        <div class="flex justify-between"><dt>Frames gesendet</dt><dd>{{ client_metrics.sent_frames }}</dd></div>
+        <div class="flex justify-between"><dt>Frames empfangen</dt><dd>{{ client_metrics.received_frames }}</dd></div>
+        <div class="flex justify-between"><dt>Letzte Aktivität</dt><dd>{{ client_metrics.last_activity or '-' }}</dd></div>
+      </dl>
+    </div>
+    <div class="p-4 bg-slate-800 rounded border border-slate-700">
+      <h3 class="text-lg font-semibold">Server Status</h3>
+      <dl class="mt-2 text-sm space-y-1">
+        <div class="flex justify-between"><dt>Frames gesendet</dt><dd>{{ server_metrics.sent_frames }}</dd></div>
+        <div class="flex justify-between"><dt>Frames empfangen</dt><dd>{{ server_metrics.received_frames }}</dd></div>
+        <div class="flex justify-between"><dt>Letzte Aktivität</dt><dd>{{ server_metrics.last_activity or '-' }}</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div id="connections" class="p-4 bg-slate-800 rounded border border-slate-700">
+    <h3 class="text-lg font-semibold">Verbindungsinformation</h3>
+    <p class="text-sm text-slate-300">Nutzen Sie die Registerkarte „Prüfung“, um Verbindungen aufzubauen und Testsequenzen zu senden.</p>
+  </div>
+</section>
+{% endblock %}

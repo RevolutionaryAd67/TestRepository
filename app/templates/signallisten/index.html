@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Signallisten · IEC 60870-5-104 Testbench{% endblock %}
+
+{% block content %}
+<section class="space-y-6">
+  <div id="import" class="p-4 bg-slate-800 border border-slate-700 rounded">
+    <h2 class="text-xl font-semibold">Import</h2>
+    <form method="post" action="{{ url_for('signallisten.import_records') }}" class="mt-3 space-y-3">
+      <label class="block text-sm">
+        <span class="text-slate-300">Format</span>
+        <select name="format" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+        </select>
+      </label>
+      <label class="block text-sm">
+        <span class="text-slate-300">Daten</span>
+        <textarea name="payload" rows="6" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2"></textarea>
+      </label>
+      <button class="px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-500">Import starten</button>
+    </form>
+  </div>
+
+  <div id="export" class="p-4 bg-slate-800 border border-slate-700 rounded">
+    <h2 class="text-xl font-semibold">Export</h2>
+    <div class="mt-2 flex gap-3 text-sm">
+      <a class="px-4 py-2 rounded bg-slate-700 hover:bg-slate-600" href="{{ url_for('signallisten.export_records', format='json') }}">JSON herunterladen</a>
+      <a class="px-4 py-2 rounded bg-slate-700 hover:bg-slate-600" href="{{ url_for('signallisten.export_records', format='csv') }}">CSV herunterladen</a>
+    </div>
+  </div>
+
+  <div id="mapping" class="p-4 bg-slate-800 border border-slate-700 rounded">
+    <h2 class="text-xl font-semibold">Signalspeicher</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm">
+        <thead class="bg-slate-900 text-slate-300">
+          <tr>
+            <th class="px-3 py-2 text-left">Name</th>
+            <th class="px-3 py-2 text-left">TI</th>
+            <th class="px-3 py-2 text-left">IOA</th>
+            <th class="px-3 py-2 text-left">Skalierung</th>
+            <th class="px-3 py-2 text-left">Einheit</th>
+            <th class="px-3 py-2 text-left">Default</th>
+            <th class="px-3 py-2 text-left">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for signal in signals %}
+            <tr class="border-t border-slate-700">
+              <td class="px-3 py-2">{{ signal.name }}</td>
+              <td class="px-3 py-2">{{ signal.ti }}</td>
+              <td class="px-3 py-2">{{ signal.ioa }}</td>
+              <td class="px-3 py-2">{{ signal.scale or '-' }}</td>
+              <td class="px-3 py-2">{{ signal.unit or '-' }}</td>
+              <td class="px-3 py-2">{{ signal.default or '-' }}</td>
+              <td class="px-3 py-2">{{ signal.description or '-' }}</td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="7" class="px-3 py-4 text-center text-slate-400">Noch keine Signale importiert.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}
