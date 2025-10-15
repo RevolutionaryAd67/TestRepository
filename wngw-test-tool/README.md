@@ -8,28 +8,51 @@ Das WNGW-Test-Tool ist ein Monorepo zur Prüfung physischer Gateways über IEC 6
 - `pip`, `npm`
 
 ## Setup
-```bash
+```powershell
 python -m venv .venv
-source .venv/bin/activate
+.\.venv\Scripts\Activate.ps1
 pip install -r backend/requirements.txt
 pip install -e backend/local_iec104_lib
-cd frontend
+Set-Location frontend
 npm install
+Set-Location ..
 ```
 
 ## Entwicklung starten
-### Manuell
+
+### Schritt-für-Schritt-Anleitung
+1. **Virtuelle Python-Umgebung aktivieren** (falls noch nicht geschehen):
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
+2. **Backend-Entwicklungsserver starten**:
+   ```powershell
+   Set-Location backend
+   uvicorn wngw_app.main:app --reload --port 8000
+   ```
+   Der FastAPI-Server läuft danach unter http://localhost:8000.
+3. **Neues PowerShell-Fenster für das Frontend öffnen** und ins Repository wechseln:
+   ```powershell
+   Set-Location C:\Pfad\zum\Projekt\wngw-test-tool
+   ```
+4. **Frontend-Entwicklungsserver starten**:
+   ```powershell
+   Set-Location frontend
+   npm run dev
+   ```
+   Die React/Vite-Anwendung ist anschließend unter http://localhost:5173 erreichbar.
+
+### Manuell (Kurzfassung)
 In zwei Terminals:
-```bash
-# Terminal 1 – Backend
-cd backend
+```powershell
+# PowerShell 1 – Backend
+Set-Location backend
 uvicorn wngw_app.main:app --reload --port 8000
 
-# Terminal 2 – Frontend
-cd frontend
+# PowerShell 2 – Frontend
+Set-Location frontend
 npm run dev
 ```
-Backend läuft auf http://localhost:8000, Frontend auf http://localhost:5173.
 
 ### VS Code Launch-Konfiguration
 Verwende die Compound-Konfiguration **All – Backend + Frontend** aus `.vscode/launch.json`, um beide Prozesse parallel zu starten.
