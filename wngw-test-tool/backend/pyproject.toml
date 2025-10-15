@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wngw-backend"
+version = "0.1.0"
+description = "FastAPI backend for the WNGW Test Tool"
+authors = [{ name = "WNGW", email = "dev@example.com" }]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic-settings",
+    "openpyxl",
+    "python-multipart",
+]
+
+[tool.black]
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+extend-select = ["I"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["wngw_app.services.iec104"]

@@ -1,0 +1,9 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-iec104"
+version = "0.1.0"
+description = "Local IEC 60870-5-104 stub implementation"
+requires-python = ">=3.11"
