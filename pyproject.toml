@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iec104-webtester"
+version = "0.1.0"
+description = "Browser-based IEC 60870-5-104 functional test environment"
+requires-python = ">=3.11"
+authors = [
+    {name = "Test Engineer"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+keywords = ["iec104", "quart", "websocket", "testing"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: AsyncIO",
+    "Framework :: Quart",
+    "Intended Audience :: Telecommunications Industry",
+]
+
+[project.urls]
+Homepage = "https://example.com"
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0",
+    "ruff>=0.2",
+    "mypy>=1.8",
+    "pytest>=7.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["app"]
+include = ["app*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "B", "UP", "ANN", "ASYNC"]
+ignore = ["ANN101", "ANN102"]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = []
+strict = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+mypy_path = ["."]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

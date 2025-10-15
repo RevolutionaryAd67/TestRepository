@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="space-y-6">
+  <h2 class="text-xl font-semibold text-slate-800">Prüfungsübersicht</h2>
+  <p class="text-slate-600">Koordinieren Sie Client- und Server-Sessions, steuern Sie Sequenzen und überwachen Sie Live-Daten.</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="bg-white p-4 rounded shadow">
+      <h3 class="font-semibold text-slate-800">Aktuelle Client-Session</h3>
+      <ul class="text-sm text-slate-600 space-y-1" id="client-stats">
+        <li>TX: <span data-field="tx">0</span></li>
+        <li>RX: <span data-field="rx">0</span></li>
+      </ul>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h3 class="font-semibold text-slate-800">Aktuelle Server-Session</h3>
+      <ul class="text-sm text-slate-600 space-y-1" id="server-stats">
+        <li>TX: <span data-field="tx">0</span></li>
+        <li>RX: <span data-field="rx">0</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

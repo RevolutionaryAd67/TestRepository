@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-4xl space-y-6">
+  <h2 class="text-xl font-semibold text-slate-800">Willkommen</h2>
+  <p class="text-slate-600 leading-relaxed">
+    Diese Oberfläche ermöglicht das Prüfen von IEC 60870-5-104 Gateways über den Browser.
+    Nutzen Sie die Reiter oben, um Client- und Serververbindungen zu steuern,
+    Signallisten zu verwalten und administrative Aufgaben durchzuführen.
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="bg-white shadow rounded-lg p-4">
+      <h3 class="font-semibold text-slate-800">Schnellstart Client</h3>
+      <p class="text-sm text-slate-600">Konfigurieren Sie den Zielhost und starten Sie eine IEC-104 Clientverbindung.</p>
+    </div>
+    <div class="bg-white shadow rounded-lg p-4">
+      <h3 class="font-semibold text-slate-800">Schnellstart Server</h3>
+      <p class="text-sm text-slate-600">Aktivieren Sie den IEC-104 Server, um eingehende Verbindungen zu akzeptieren.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

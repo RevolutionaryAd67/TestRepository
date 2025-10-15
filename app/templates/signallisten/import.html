@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="space-y-6">
+  <h2 class="text-xl font-semibold text-slate-800">Signalliste importieren</h2>
+  <form id="signallist-import" class="bg-white p-6 rounded shadow space-y-4" enctype="multipart/form-data">
+    <div>
+      <label class="block text-sm text-slate-600">Datei (CSV oder JSON)
+        <input type="file" name="file" accept=".csv,.json" class="mt-1 w-full border rounded px-3 py-2" />
+      </label>
+    </div>
+    <div class="flex gap-2">
+      <button type="submit" class="px-4 py-2 bg-emerald-600 text-white rounded">Import starten</button>
+      <button type="button" class="px-4 py-2 bg-slate-200 text-slate-700 rounded">Abbrechen</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

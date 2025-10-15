@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="space-y-6">
+  <h2 class="text-xl font-semibold text-slate-800">Administration</h2>
+  <section class="bg-white p-6 rounded shadow">
+    <h3 class="font-semibold text-slate-800 mb-3">Konfiguration</h3>
+    <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+      <div>
+        <dt class="font-medium text-slate-700">HTTP Host</dt>
+        <dd>{{ settings.app_host }}:{{ settings.app_port }}</dd>
+      </div>
+      <div>
+        <dt class="font-medium text-slate-700">IEC104 Client</dt>
+        <dd>{{ settings.iec104_client_host }}:{{ settings.iec104_client_port }}</dd>
+      </div>
+      <div>
+        <dt class="font-medium text-slate-700">IEC104 Server</dt>
+        <dd>{{ settings.iec104_server_host }}:{{ settings.iec104_server_port }}</dd>
+      </div>
+      <div>
+        <dt class="font-medium text-slate-700">Ringbuffer</dt>
+        <dd>{{ settings.stream_ringbuffer_capacity }} Ereignisse</dd>
+      </div>
+    </dl>
+  </section>
+  <section class="bg-white p-6 rounded shadow">
+    <h3 class="font-semibold text-slate-800 mb-3">Diagnose</h3>
+    <p class="text-sm text-slate-600">WebSocket Transport aktiv. Keine HTTP-Polling-Mechanismen im Einsatz.</p>
+  </section>
+</div>
+{% endblock %}
