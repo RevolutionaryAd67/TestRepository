@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="space-y-4">
+  <h2 class="text-xl font-semibold text-slate-800">Monitor</h2>
+  <p class="text-slate-600 text-sm">Die rechte Seitenleiste zeigt alle IEC-104 Frames in Echtzeit. Verwenden Sie Filter, um bestimmte Nachrichten einzugrenzen.</p>
+  <div class="bg-white border rounded shadow p-4">
+    <h3 class="font-semibold text-slate-800 mb-2">Stream-Einstellungen</h3>
+    <p class="text-sm text-slate-600">Der Ringpuffer speichert die letzten {{ config['settings'].stream_ringbuffer_capacity }} Meldungen.</p>
+  </div>
+</div>
+{% endblock %}
