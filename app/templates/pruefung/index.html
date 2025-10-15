@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Prüfung · IEC 60870-5-104 Testbench{% endblock %}
+
+{% block content %}
+<section id="connections" class="space-y-4">
+  <div class="p-4 bg-slate-800 rounded border border-slate-700">
+    <h2 class="text-xl font-semibold">Verbindungen</h2>
+    <div class="mt-3 flex gap-3">
+      <form method="post" action="{{ url_for('pruefung.connect_client') }}">
+        <button class="px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-500">Verbinden</button>
+      </form>
+      <form method="post" action="{{ url_for('pruefung.disconnect_client') }}">
+        <button class="px-4 py-2 rounded bg-rose-600 hover:bg-rose-500">Trennen</button>
+      </form>
+      <form method="post" action="{{ url_for('pruefung.start_server') }}">
+        <button class="px-4 py-2 rounded bg-cyan-600 hover:bg-cyan-500">Server starten</button>
+      </form>
+      <form method="post" action="{{ url_for('pruefung.stop_server') }}">
+        <button class="px-4 py-2 rounded bg-amber-600 hover:bg-amber-500">Server stoppen</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="templates" class="p-4 bg-slate-800 rounded border border-slate-700">
+    <h2 class="text-xl font-semibold">ASDU senden</h2>
+    <form method="post" action="{{ url_for('pruefung.send_asdu') }}" class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+      <label class="text-sm">
+        <span class="block text-slate-300">Type Identifier (TI)</span>
+        <input type="text" name="ti" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required />
+      </label>
+      <label class="text-sm">
+        <span class="block text-slate-300">Cause of Transmission (COT)</span>
+        <input type="text" name="cot" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required />
+      </label>
+      <label class="text-sm">
+        <span class="block text-slate-300">IOA</span>
+        <input type="text" name="ioa" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required />
+      </label>
+      <label class="text-sm md:col-span-2">
+        <span class="block text-slate-300">Values (JSON)</span>
+        <textarea name="values" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder='[{"value":1}]'></textarea>
+      </label>
+      <div class="md:col-span-2">
+        <button class="px-4 py-2 rounded bg-emerald-600 hover:bg-emerald-500">ASDU senden</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="scenarios" class="p-4 bg-slate-800 rounded border border-slate-700">
+    <h2 class="text-xl font-semibold">Sequenzen</h2>
+    <ul class="mt-3 space-y-3">
+      {% for scenario in scenarios %}
+        <li class="border border-slate-700 rounded p-3">
+          <h3 class="font-semibold">{{ scenario.name }}</h3>
+          <p class="text-sm text-slate-300">{{ scenario.description }}</p>
+          <ul class="mt-2 text-xs text-slate-400 space-y-1">
+            {% for step in scenario.steps %}
+              <li>• {{ step.name }} — delay {{ step.delay }}s</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}
