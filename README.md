@@ -78,6 +78,27 @@ app/
 ## Hinweise
 
 - Die Anwendung nutzt ausschließlich WebSockets (keine Long-Polling Fallbacks).
-- Das lokale `iec104` Paket wird erwartet und muss die Klassen `IEC104Client` und `IEC104Server` bereitstellen.
+- Das lokale `iec104` Paket wird erwartet und muss die Klassen `IEC104Client` und `IEC104Server` bereitstellen. Folgende Schritte haben sich bewährt:
+  1. Klone oder entpacke das `iec104`-Repository neben dieses Projekt, sodass die Ordnerstruktur etwa so aussieht:
+
+     ```
+     parent/
+       iec104/
+       TestRepository/
+     ```
+
+  2. Wechsel anschließend in dieses Projekt (`TestRepository`) und installiere das Paket im Entwicklungsmodus:
+
+     ```bash
+     pip install -e ../iec104
+     ```
+
+     Dadurch steht das Paket für den folgenden Schritt `pip install -e .[dev]` bereit.
+
+  3. Falls du statt eines Geschwisterordners einen anderen Pfad nutzt, passe den Installationsbefehl entsprechend an (z. B. `pip install -e /pfad/zum/iec104`).
+
+  4. Prüfe bei Bedarf mit `pip show iec104`, ob das Paket korrekt eingebunden wurde.
+
+  Danach kannst du wie gewohnt mit Schritt 3 fortfahren (`pip install -e .[dev]`).
 - Standarddatenbank ist `sqlite:///app.db` (Datei wird beim ersten Start erstellt).
 
