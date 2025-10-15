@@ -78,6 +78,6 @@ app/
 ## Hinweise
 
 - Die Anwendung nutzt ausschließlich WebSockets (keine Long-Polling Fallbacks).
-- Das lokale `iec104` Paket wird erwartet und muss die Klassen `IEC104Client` und `IEC104Server` bereitstellen.
+- Das lokale `iec104` Paket wird erwartet und muss die Klassen `IEC104Client` und `IEC104Server` bereitstellen. Lege den Ordner z. B. als Geschwisterverzeichnis zu diesem Projekt (`…/iec104` neben `…/TestRepository`) ab und installiere ihn vor Schritt 3 mit `pip install -e ../iec104`, damit `pip install -e .[dev]` das Paket auflösen kann.
 - Standarddatenbank ist `sqlite:///app.db` (Datei wird beim ersten Start erstellt).
 
